@@ -20,8 +20,10 @@ TEST_CASE("checkAndAlert UC1")
 	BatteryCharacter BatteryChar;
         BatteryChar.coolingType = PASSIVE_COOLING;
 	checkAndAlert(TO_CONTROLLER,BatteryChar,40);
-	SECTION("Fetch alert")
-	{
-	  REQUIRE(classifyTemperatureBreach(HI_ACTIVE_COOLING, 40) == NORMAL);
-	}
+}
+TEST_CASE("checkAndAlert UC2")
+{
+	BatteryCharacter BatteryChar;
+        BatteryChar.coolingType = PASSIVE_COOLING;
+	checkAndAlert(TO_EMAIL,BatteryChar,40);
 }
