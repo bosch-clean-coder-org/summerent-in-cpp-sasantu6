@@ -18,8 +18,8 @@ TEST_CASE("classify temperature according to cooling type UC3") {
 TEST_CASE("checkAndAlert UC1")
 {
 	BatteryCharacter BatteryChar;
-  BatteryChar.coolingType = PASSIVE_COOLING;
-	checkAndAlert(TO_CONTROLLER,BatteryChar)
+        BatteryChar.coolingType = PASSIVE_COOLING;
+	checkAndAlert(TO_CONTROLLER,BatteryChar,40);
 	SECTION("Fetch alert")
 	{
 	  REQUIRE(classifyTemperatureBreach(HI_ACTIVE_COOLING, 40) == NORMAL);
