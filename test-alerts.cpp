@@ -12,3 +12,6 @@ TEST_CASE("classify temperature according to cooling type test1") {
 TEST_CASE("classify temperature according to cooling type test2") {
   REQUIRE(classifyTemperatureBreach(HI_ACTIVE_COOLING, 40) == NORMAL);
 }
+TEST_CASE("classify temperature according to cooling type test3") {
+  REQUIRE(classifyTemperatureBreach(MED_ACTIVE_COOLING, -1) == TOO_LOW);
+}
