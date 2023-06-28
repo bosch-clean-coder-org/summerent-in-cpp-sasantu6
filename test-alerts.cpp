@@ -27,3 +27,17 @@ TEST_CASE("checkAndAlert UC2")
         BatteryChar.coolingType = PASSIVE_COOLING;
 	checkAndAlert(TO_EMAIL,BatteryChar,40);
 }
+SCENARIO("checkAndAlert tests", "[checkAndAlert]")
+{
+GIVEN("cooling type and temperature")
+{
+checkAndAlert(TO_CONTROLLER,BatteryChar,40);
+WHEN("coolingType is PASSIVE_COOLING")
+{
+THEN("BreachType  return as TOO_HIGH")
+{
+REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 40) == TOO_HIGH);
+}
+}
+}
+}
