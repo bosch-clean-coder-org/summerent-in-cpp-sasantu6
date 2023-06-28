@@ -15,7 +15,7 @@ TEST_CASE("classify temperature according to cooling type UC2") {
 TEST_CASE("classify temperature according to cooling type UC3") {
   REQUIRE(classifyTemperatureBreach(MED_ACTIVE_COOLING, -1) == TOO_LOW);
 }
-TEST_CASE("checkAndAlert UC 1")
+/*TEST_CASE("checkAndAlert UC 1")
 {
 	BatteryCharacter BatteryChar;
         BatteryChar.coolingType = PASSIVE_COOLING;
@@ -26,18 +26,28 @@ TEST_CASE("checkAndAlert UC2")
 	BatteryCharacter BatteryChar;
         BatteryChar.coolingType = PASSIVE_COOLING;
 	checkAndAlert(TO_EMAIL,BatteryChar,40);
-}
+}*/
 SCENARIO("checkAndAlert tests", "[checkAndAlert]")
 {
-GIVEN("cooling type and temperature")
-{
-checkAndAlert(TO_CONTROLLER,BatteryChar,40);
-WHEN("coolingType is PASSIVE_COOLING")
-{
-THEN("BreachType  return as TOO_HIGH")
-{
-REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 40) == TOO_HIGH);
-}
-}
-}
+	GIVEN("cooling type and temperature")
+	{
+		BatteryCharacter BatteryChar;
+		BatteryChar.coolingType = PASSIVE_COOLING;	
+		WHEN("coolingType is PASSIVE_COOLING")
+		{
+			checkAndAlert(TO_CONTROLLER,BatteryChar,40);
+			THEN("BreachType  return as TOO_HIGH")
+			{
+				REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 40) == TOO_HIGH);
+			}
+		}
+		WHEN("coolingType is PASSIVE_COOLING")
+		{
+			checkAndAlert(TO_EMAIL,BatteryChar,40);
+			THEN("BreachType  return as TOO_HIGH")
+			{
+				REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 40) == TOO_HIGH);
+			}
+		}
+	}
 }
